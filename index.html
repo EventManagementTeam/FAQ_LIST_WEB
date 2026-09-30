@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>質問するほど就活が有利になる！「自分ならでは」の質問リスト｜AIエンジニア キャリアイベント</title>
+  <!-- Google Fonts: Zen Kaku Gothic New -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Zen Kaku Gothic New"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f0fdfa',
+              100: '#ccfbf1',
+              500: '#14b8a6',
+              600: '#0d9488',
+              700: '#0f766e',
+            },
+            accent: {
+              50: '#fffbeb',
+              100: '#fef3c7',
+              500: '#f59e0b',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Zen Kaku Gothic New', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .accordion-content {
+      transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+    }
+    /* コピートーストのアニメーション */
+    @keyframes toastFade {
+      0% { opacity: 0; transform: translate(-50%, 20px) scale(0.95); }
+      15% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      85% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+      100% { opacity: 0; transform: translate(-50%, -10px) scale(0.95); }
+    }
+    .toast-active {
+      animation: toastFade 2.2s forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- 画面幅いっぱいにフィットするフルスクリーンコンテナ -->
+  <main class="w-full min-h-screen bg-white flex flex-col overflow-hidden">
+
+    <!-- ヘッダーエリア（画面横幅いっぱい） -->
+    <header class="w-full bg-gradient-to-br from-teal-500 via-teal-600 to-emerald-600 text-white px-4 sm:px-8 lg:px-12 pt-8 pb-8 shadow-sm relative overflow-hidden">
+      <!-- 背景のアクセントサークル -->
+      <div class="absolute -right-8 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-xl pointer-events-none"></div>
+      <div class="absolute -left-6 -top-6 w-36 h-36 bg-emerald-400/20 rounded-full blur-lg pointer-events-none"></div>
+
+      <div class="relative z-10 w-full">
+        <div class="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs sm:text-sm font-semibold tracking-wide mb-3">
+          <i class="fa-solid fa-sparkles text-amber-300"></i>
+          <span>9月30日(水)開催 AIエンジニア キャリアイベント</span>
+        </div>
+        <h1 class="text-2xl sm:text-3xl lg:text-4xl font-black leading-snug tracking-tight">
+          質問するほど就活が有利になる！ <span class="text-amber-200 underline decoration-amber-300/60 decoration-4 underline-offset-4">「自分ならでは」の質問リスト</span>
+        </h1>
+        
+        <div class="mt-5 bg-white/15 backdrop-blur-sm rounded-2xl p-4 sm:p-5 border border-white/20 text-xs sm:text-sm leading-relaxed text-teal-50 w-full">
+          <p class="font-bold text-sm sm:text-base flex items-center gap-2 text-amber-200 mb-1.5">
+            <i class="fa-regular fa-lightbulb text-amber-300"></i>
+            なぜ今、質問すべきなの？
+          </p>
+          <p class="mb-2">
+            全体説明では聞けない<strong class="text-white">「生の声・現場のリアル」</strong>を知るチャンス！<br>
+            自分の興味や専攻を交えて質問すれば、志望企業へのアピールになるのはもちろん、どんな企業への質問でも「自分の就活の軸」を深め、新しい視野を広げるきっかけになります。
+          </p>
+          <p class="text-teal-100 bg-white/10 p-2.5 rounded-xl border border-white/10">
+            💡 「シートのこの質問が気になったのですが…」とそのまま聞くだけでOK！せっかくの限られた時間です。ぜひこの機会を<strong class="text-amber-200">自分の就活のために役立ててみてください！</strong>
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- カテゴリフィルター -->
+    <nav class="w-full px-4 sm:px-8 lg:px-12 pt-6 pb-4 border-b border-slate-100 bg-white">
+      <p class="text-xs font-bold text-slate-500 mb-3 flex items-center gap-1.5">
+        <i class="fa-solid fa-sliders text-teal-600"></i> 気になるジャンルで絞り込む
+      </p>
+      <div class="flex flex-wrap gap-2 text-xs sm:text-sm font-semibold">
+        <button onclick="filterCategory('all', this)" class="filter-btn px-4 py-2 rounded-full bg-teal-600 text-white shadow-sm transition-all">
+          すべて
+        </button>
+        <button onclick="filterCategory('skill', this)" class="filter-btn px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+          専攻・スキル
+        </button>
+        <button onclick="filterCategory('company', this)" class="filter-btn px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+          会社選び・入社決め手
+        </button>
+        <button onclick="filterCategory('work', this)" class="filter-btn px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+          業務内容
+        </button>
+        <button onclick="filterCategory('career', this)" class="filter-btn px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+          選考・キャリア
+        </button>
+        <button onclick="filterCategory('style', this)" class="filter-btn px-4 py-2 rounded-full bg-slate-100 text-slate-600 hover:bg-slate-200 transition-all">
+          働き方
+        </button>
+      </div>
+    </nav>
+
+    <!-- テーマカード一覧（1列縦並び layout） -->
+    <section class="w-full px-4 sm:px-8 lg:px-12 py-6 flex-1 flex flex-col gap-4" id="cardList">
+
+      <!-- CARD 1: 専攻・スキル -->
+      <article class="theme-card w-full bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-teal-300 transition-all overflow-hidden" data-category="skill">
+        <button onclick="toggleCard(this)" class="w-full text-left p-5 flex items-center justify-between gap-3 focus:outline-none hover:bg-slate-50/50 transition-colors">
+          <div class="flex items-center gap-3.5">
+            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shrink-0 border border-teal-100">
+              🎓
+            </span>
+            <div>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md inline-block mb-1">専攻・スキル</span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                「未経験や他分野でも大丈夫？」
+              </h2>
+            </div>
+          </div>
+          <span class="chevron-icon text-slate-400 text-sm transition-transform duration-200 shrink-0">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+
+        <!-- 初期状態：閉じた状態 (hidden) -->
+        <div class="accordion-content hidden px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/30">
+          <p class="text-xs font-bold text-slate-500 mb-2.5 flex items-center gap-1">
+            <i class="fa-regular fa-comment-dots text-teal-600"></i> おすすめの質問フレーズ
+          </p>
+          <div class="space-y-2.5">
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                専攻外出身者は、入社後どんな仕事からスタートしていますか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all" title="質問をコピー">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                大学での研究経験や専門知識は、実際の開発や業務でどう役立っていますか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all" title="質問をコピー">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                入社までに勉強しておくと安心なスキルは何ですか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all" title="質問をコピー">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 2: 会社選び・入社決め手 -->
+      <article class="theme-card w-full bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-teal-300 transition-all overflow-hidden" data-category="company">
+        <button onclick="toggleCard(this)" class="w-full text-left p-5 flex items-center justify-between gap-3 focus:outline-none hover:bg-slate-50/50 transition-colors">
+          <div class="flex items-center gap-3.5">
+            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shrink-0 border border-teal-100">
+              🏢
+            </span>
+            <div>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md inline-block mb-1">会社選び・入社の決め手</span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                「他社との違いや選んだ理由は？」
+              </h2>
+            </div>
+          </div>
+          <span class="chevron-icon text-slate-400 text-sm transition-transform duration-200 shrink-0">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+
+        <div class="accordion-content hidden px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/30">
+          <p class="text-xs font-bold text-slate-500 mb-2.5 flex items-center gap-1">
+            <i class="fa-regular fa-comment-dots text-teal-600"></i> おすすめの質問フレーズ
+          </p>
+          <div class="space-y-2.5">
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                他社と比べたとき、「これだけは負けない！」という強みや魅力は何ですか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                最終的にこの会社を選んだ一番の決め手は？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                こういう価値観やタイプの方は、特に社風に合うと感じるのはどんな人ですか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 3: 業務内容 -->
+      <article class="theme-card w-full bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-teal-300 transition-all overflow-hidden" data-category="work">
+        <button onclick="toggleCard(this)" class="w-full text-left p-5 flex items-center justify-between gap-3 focus:outline-none hover:bg-slate-50/50 transition-colors">
+          <div class="flex items-center gap-3.5">
+            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shrink-0 border border-teal-100">
+              💻
+            </span>
+            <div>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md inline-block mb-1">業務内容</span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                「実際どんな仕事？ 大変？」
+              </h2>
+            </div>
+          </div>
+          <span class="chevron-icon text-slate-400 text-sm transition-transform duration-200 shrink-0">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+
+        <div class="accordion-content hidden px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/30">
+          <p class="text-xs font-bold text-slate-500 mb-2.5 flex items-center gap-1">
+            <i class="fa-regular fa-comment-dots text-teal-600"></i> おすすめの質問フレーズ
+          </p>
+          <div class="space-y-2.5">
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                普段はどんな案件に関わり、どういう流れで開発していますか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                仕事をしていて一番「面白い！やりがいがある！」と感じる瞬間は？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                今までで一番苦労したプロジェクトと、それをどう乗り越えましたか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 4: 選考・キャリア -->
+      <article class="theme-card w-full bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-teal-300 transition-all overflow-hidden" data-category="career">
+        <button onclick="toggleCard(this)" class="w-full text-left p-5 flex items-center justify-between gap-3 focus:outline-none hover:bg-slate-50/50 transition-colors">
+          <div class="flex items-center gap-3.5">
+            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shrink-0 border border-teal-100">
+              🎯
+            </span>
+            <div>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md inline-block mb-1">選考・キャリア</span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                「どんな学生と一緒に働きたい？」
+              </h2>
+            </div>
+          </div>
+          <span class="chevron-icon text-slate-400 text-sm transition-transform duration-200 shrink-0">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+
+        <div class="accordion-content hidden px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/30">
+          <p class="text-xs font-bold text-slate-500 mb-2.5 flex items-center gap-1">
+            <i class="fa-regular fa-comment-dots text-teal-600"></i> おすすめの質問フレーズ
+          </p>
+          <div class="space-y-2.5">
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                面接などで「この人と一緒に働きたい！」と感じる学生の共通点はありますか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                技術力以外に、面接や仕事で重視される資質は何ですか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                面接で研究内容を話すとき、どの深さまで話すべきですか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 5: 働き方 -->
+      <article class="theme-card w-full bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-teal-300 transition-all overflow-hidden" data-category="style">
+        <button onclick="toggleCard(this)" class="w-full text-left p-5 flex items-center justify-between gap-3 focus:outline-none hover:bg-slate-50/50 transition-colors">
+          <div class="flex items-center gap-3.5">
+            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shrink-0 border border-teal-100">
+              🤝
+            </span>
+            <div>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md inline-block mb-1">働き方</span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                「現場の雰囲気や環境はどう？」
+              </h2>
+            </div>
+          </div>
+          <span class="chevron-icon text-slate-400 text-sm transition-transform duration-200 shrink-0">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+
+        <div class="accordion-content hidden px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/30">
+          <p class="text-xs font-bold text-slate-500 mb-2.5 flex items-center gap-1">
+            <i class="fa-regular fa-comment-dots text-teal-600"></i> おすすめの質問フレーズ
+          </p>
+          <div class="space-y-2.5">
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                困った時、先輩や上司にはどんな雰囲気で相談できますか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                リモートと出社、実際の働き方や残業が多い時期の乗り越え方はどんな感じですか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-700 leading-relaxed">
+                入社後の配属先（研究テーマや参加プロジェクト）は本人の希望が通りますか？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- CARD 6: 〇〇 (自由記入枠) -->
+      <article class="theme-card w-full bg-white border border-slate-200 rounded-2xl shadow-sm hover:border-teal-300 transition-all overflow-hidden" data-category="all">
+        <button onclick="toggleCard(this)" class="w-full text-left p-5 flex items-center justify-between gap-3 focus:outline-none hover:bg-slate-50/50 transition-colors">
+          <div class="flex items-center gap-3.5">
+            <span class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-lg shrink-0 border border-teal-100">
+              ✏️
+            </span>
+            <div>
+              <span class="text-xs font-bold text-teal-700 bg-teal-50 px-2.5 py-0.5 rounded-md inline-block mb-1">オリジナルのテーマ</span>
+              <h2 class="text-base sm:text-lg font-bold text-slate-800 leading-snug">
+                「〇〇？」
+              </h2>
+            </div>
+          </div>
+          <span class="chevron-icon text-slate-400 text-sm transition-transform duration-200 shrink-0">
+            <i class="fa-solid fa-chevron-down"></i>
+          </span>
+        </button>
+
+        <div class="accordion-content hidden px-5 pb-5 pt-2 border-t border-slate-100 bg-slate-50/30">
+          <p class="text-xs font-bold text-slate-500 mb-2.5 flex items-center gap-1">
+            <i class="fa-regular fa-comment-dots text-teal-600"></i> メモ・自分ならではの自由質問枠
+          </p>
+          <div class="space-y-2.5">
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-400 italic leading-relaxed">
+                ？ (ここに自分独自の質問をメモしてみましょう)
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-400 italic leading-relaxed">
+                ？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+            <div class="question-box bg-white border border-slate-200/80 rounded-xl p-3.5 flex items-center justify-between gap-3 shadow-xs">
+              <p class="text-xs sm:text-sm font-medium text-slate-400 italic leading-relaxed">
+                ？
+              </p>
+              <button onclick="copyQuestion(this)" class="copy-btn shrink-0 text-slate-400 hover:text-teal-600 text-xs px-2.5 py-1.5 rounded bg-slate-50 border border-slate-200 active:scale-95 transition-all">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </section>
+
+    <!-- フッター -->
+    <footer class="w-full p-8 text-center text-xs sm:text-sm text-slate-400 bg-slate-50 border-t border-slate-100 mt-auto">
+      <div class="w-12 h-1 bg-slate-200 rounded-full mx-auto mb-4"></div>
+      <p class="font-medium text-slate-600 mb-1">気になるテーマは見つかりましたか？</p>
+      <p class="leading-relaxed">質問はメモしなくても、<i class="fa-regular fa-copy text-teal-600"></i> ボタンでコピーできます。<br class="hidden sm:inline">今日の出会いを楽しんでくださいね！</p>
+    </footer>
+
+    <!-- コピー完了トースト通知 -->
+    <div id="copyToast" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900/90 backdrop-blur text-white px-5 py-3 rounded-full text-xs sm:text-sm font-bold flex items-center gap-2 shadow-2xl opacity-0 pointer-events-none z-50 transition-all">
+      <i class="fa-solid fa-circle-check text-emerald-400"></i>
+      <span>質問をコピーしました！</span>
+    </div>
+
+  </main>
+
+  <script>
+    // カードのアコーディオン開閉
+    function toggleCard(button) {
+      const card = button.closest('.theme-card');
+      const content = card.querySelector('.accordion-content');
+      const chevron = button.querySelector('.chevron-icon');
+
+      const isHidden = content.classList.contains('hidden');
+
+      if (isHidden) {
+        content.classList.remove('hidden');
+        chevron.style.transform = 'rotate(180deg)';
+        card.classList.add('ring-2', 'ring-teal-500/20', 'border-teal-400');
+      } else {
+        content.classList.add('hidden');
+        chevron.style.transform = 'rotate(0deg)';
+        card.classList.remove('ring-2', 'ring-teal-500/20', 'border-teal-400');
+      }
+    }
+
+    // カテゴリフィルター
+    function filterCategory(category, button) {
+      const buttons = document.querySelectorAll('.filter-btn');
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-teal-600', 'text-white', 'shadow-sm');
+        btn.classList.add('bg-slate-100', 'text-slate-600');
+      });
+
+      button.classList.remove('bg-slate-100', 'text-slate-600');
+      button.classList.add('bg-teal-600', 'text-white', 'shadow-sm');
+
+      const cards = document.querySelectorAll('.theme-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.dataset.category === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 質問テキストのワンタップコピー機能 (ExecCommand fallback with modern clipboard API)
+    function copyQuestion(button) {
+      const box = button.closest('.question-box');
+      const text = box.querySelector('p').innerText.trim();
+
+      if (!text || text.startsWith('？')) return;
+
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(() => {
+          onCopySuccess(button);
+        }).catch(() => {
+          fallbackCopyText(text, button);
+        });
+      } else {
+        fallbackCopyText(text, button);
+      }
+    }
+
+    function fallbackCopyText(text, button) {
+      const textArea = document.createElement("textarea");
+      textArea.value = text;
+      textArea.style.position = "fixed";
+      textArea.style.left = "-9999px";
+      document.body.appendChild(textArea);
+      textArea.focus();
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        onCopySuccess(button);
+      } catch (err) {
+        console.error('コピーに失敗しました', err);
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function onCopySuccess(button) {
+      showToast();
+      const icon = button.querySelector('i');
+      icon.className = 'fa-solid fa-check text-teal-600';
+      setTimeout(() => {
+        icon.className = 'fa-regular fa-copy';
+      }, 1500);
+    }
+
+    // トースト表示
+    let toastTimeout;
+    function showToast() {
+      const toast = document.getElementById('copyToast');
+      toast.classList.remove('toast-active');
+      void toast.offsetWidth; // リフロー発生
+      toast.classList.add('toast-active');
+
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.remove('toast-active');
+      }, 2200);
+    }
+  </script>
+</body>
+</html>
